@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import 'normalize.css';
+import Planet from './generator';
 
 // init
 
