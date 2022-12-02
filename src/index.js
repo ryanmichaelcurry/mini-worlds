@@ -49,6 +49,7 @@ for (let i = 0; i < geometry.attributes.position.array.length; i += 3) {
 geometry.computeVertexNormals();
 geometry.attributes.position.needsUpdate = true;
 
+console.log(geometry);
 
 const mesh = new THREE.Mesh(
   geometry,
