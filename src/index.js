@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "planet",
     1,
     document.getElementById("detail").value,
-    get("seed") === undefined ? Math.random() : get("seed"),
+    document.getElementById("surfaceColor").value,
     hex2rgb(document.getElementById("surfaceColor").value),
     hex2rgb(document.getElementById("oceanColor").value),
     document.getElementById("seaLevelOffset").value,
@@ -48,12 +48,12 @@ document.addEventListener("DOMContentLoaded", function () {
   game.start();
 
   // Listeners
-  document.getElementById('seed').addEventListener("change", updatePlanetEvent);
-  document.getElementById('surfaceColor').addEventListener("change", updatePlanetEvent);
-  document.getElementById('oceanColor').addEventListener("change", updatePlanetEvent);
-  document.getElementById('seaLevelOffset').addEventListener("change", updatePlanetEvent);
-  document.getElementById('heightOffset').addEventListener("change", updatePlanetEvent);
-  document.getElementById('detail').addEventListener("change", updatePlanetEvent);
+  document.getElementById('seed').addEventListener("input", updatePlanetEvent);
+  document.getElementById('surfaceColor').addEventListener("input", updatePlanetEvent);
+  document.getElementById('oceanColor').addEventListener("input", updatePlanetEvent);
+  document.getElementById('seaLevelOffset').addEventListener("input", updatePlanetEvent);
+  document.getElementById('heightOffset').addEventListener("input", updatePlanetEvent);
+  document.getElementById('detail').addEventListener("input", updatePlanetEvent);
 });
 
 // Function for when the initial planet info changes

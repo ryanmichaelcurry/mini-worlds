@@ -22,24 +22,41 @@
       style="
         background-color: beige;
         position: absolute;
-        top: 0%;
-        height: 100%;
+        top: 2.5%;
+        height: 95%;
         width: 20%;
+        opacity: 40%;
+        border-radius: 0px 20px 20px 0px;
       "
     >
+  </div>
+  <div
+      style="
+        position: absolute;
+        top: 2.5%;
+        height: 95%;
+        width: 20%;
+        opacity: 100%;
+        border-radius: 0px 20px 20px 0px;
+      "
+    >
+      
       <div class="container mt-3">
-        <div class="mb-3">
-          <label for="seed" class="form-label">Seed</label>
+        <h1 style="color: black;">miniworlds.</h1>
+
+        <div class="mt-3 mb-3">
+          <label for="seed" class="form-label" style="color: black;">Seed</label>
           <input
             type="text"
             class="form-control"
             id="seed"
             name="seed"
-            placeholder="seed"
+            placeholder=""
+            style="opacity: 40%;"
           />
         </div>
         <div class="mb-3">
-          <label for="surfaceColor" class="form-label">Surface Color</label>
+          <label for="surfaceColor" class="form-label" style="color: black;">Surface Color</label>
           <input
             type="color"
             class="form-control form-control-color"
@@ -47,10 +64,11 @@
             name="surfaceColor"
             value="#563d7c"
             title="Choose your color"
+            style="opacity: 40%;"
           />
         </div>
         <div class="mb-3">
-          <label for="oceanColor" class="form-label">Ocean Color</label>
+          <label for="oceanColor" class="form-label" style="color: black;">Ocean Color</label>
           <input
             type="color"
             class="form-control form-control-color"
@@ -58,10 +76,11 @@
             name="oceanColor"
             value="#563d7c"
             title="Choose your color"
+            style="opacity: 40%;"
           />
         </div>
         <div class="mb-3">
-          <label for="seaLevelOffset" class="form-label"
+          <label for="seaLevelOffset" class="form-label" style="color: black;"
             >Sea Level Offset</label
           >
           <input
@@ -69,26 +88,27 @@
             class="form-range"
             id="seaLevelOffset"
             name="seaLevelOffset"
+            style="opacity: 40%;"
           />
         </div>
         <div class="mb-3">
-          <label for="heightOffset" class="form-label">Height Offset</label>
+          <label for="heightOffset" class="form-label" style="color: black;">Height Offset</label>
           <input
             type="range"
             class="form-range"
             id="heightOffset"
             name="heightOffset"
+            style="opacity: 40%;"
           />
         </div>
         <div class="mb-3">
-          <label for="detail" class="form-label">Detail</label>
+          <label for="detail" class="form-label" style="color: black;">Detail</label>
           <input
             type="range"
-            min="2"
-            max="16"
             class="form-range"
             id="detail"
             name="detail"
+            style="opacity: 40%;"
           />
         </div>
       </div>

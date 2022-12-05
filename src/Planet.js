@@ -22,22 +22,28 @@ export default class Planet extends Entity {
   ) {
     super(name); // name is going to be the seed of the planet
     this.radius = radius;
-    this.detail = detail;
+    this.detail = convertRange(detail, [0, 100], [4, 32]);
     this.planetColor = planetColor;
     this.oceanColor = oceanColor;
-    this.seaLevelOffset = convertRange(seaLevelOffset, [0, 100], [-0.1, 0.1]);
-    this.heightOffset = convertRange(heightOffset, [0, 100], [-0.1, 0.1]);
+    this.seaLevelOffset = convertRange(
+      seaLevelOffset,
+      [0, 100],
+      [0.0175, -0.05]
+    );
+    this.heightOffset = convertRange(heightOffset, [0, 100], [0.01, 0.2]);
     this.noise3D = createNoise3D(alea(seed));
 
     this.generatePlanet();
-    this.generateOcean();
+    if (seaLevelOffset != 0) {
+      this.generateOcean();
+    }
 
     console.log(this);
   }
 
   generatePlanet() {
     // generates icosphere
-    const geometry = new THREE.IcosahedronGeometry(1, 8);
+    const geometry = new THREE.IcosahedronGeometry(1, Math.floor(this.detail));
 
     // modify icospehre positions
     for (let i = 0; i < geometry.attributes.position.count * 3; i += 3) {
@@ -50,10 +56,10 @@ export default class Planet extends Entity {
       var actualNoiseValue = this.noise3D(vertex.x, vertex.y, vertex.z);
       var noiseValue = actualNoiseValue;
 
+      /*
       var heightOffset = 0.02;
       var seaLevelOffset = 0.005;
-
-
+      */
 
       geometry.attributes.position.array[i] *=
         1.0 + this.seaLevelOffset + noiseValue * this.heightOffset;
