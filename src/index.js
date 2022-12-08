@@ -31,29 +31,76 @@ const hex2rgb = (hex) => {
 const game = new Game();
 
 document.addEventListener("DOMContentLoaded", function () {
+  const detail =
+    get("detail") === undefined
+      ? document.getElementById("detail").value
+      : get("detail");
+  const seed =
+    get("seed") === undefined
+      ? document.getElementById("seed").value
+      : get("seed");
+  const surfaceColor =
+    get("surfaceColor") === undefined
+      ? document.getElementById("surfaceColor").value
+      : get("surfaceColor");
+  const oceanColor =
+    get("oceanColor") === undefined
+      ? document.getElementById("oceanColor").value
+      : get("oceanColor");
+  const seaLevelOffset =
+    get("seaLevelOffset") === undefined
+      ? document.getElementById("seaLevelOffset").value
+      : get("seaLevelOffset");
+  const heightOffset =
+    get("heightOffset") === undefined
+      ? document.getElementById("heightOffset").value
+      : get("heightOffset");
+
+  document.getElementById("detail").value = detail;
+  document.getElementById("seed").value = seed;
+  console.log("surfaceColor", surfaceColor);
+  document.getElementById("surfaceColor").value = surfaceColor;
+  document.getElementById("oceanColor").value = oceanColor;
+  document.getElementById("seaLevelOffset").value = seaLevelOffset;
+  document.getElementById("heightOffset").value = heightOffset;
+
   // Create Initial Planet
   var planet = new Planet(
     "planet",
     1,
-    document.getElementById("detail").value,
-    document.getElementById("surfaceColor").value,
-    hex2rgb(document.getElementById("surfaceColor").value),
-    hex2rgb(document.getElementById("oceanColor").value),
-    document.getElementById("seaLevelOffset").value,
-    document.getElementById("heightOffset").value
+    detail,
+    seed,
+    hex2rgb(surfaceColor),
+    hex2rgb(oceanColor),
+    seaLevelOffset,
+    heightOffset
   );
+
   game.addEntity(planet);
 
   // Start the Game
   game.start();
 
   // Listeners
-  document.getElementById('seed').addEventListener("input", updatePlanetEvent);
-  document.getElementById('surfaceColor').addEventListener("input", updatePlanetEvent);
-  document.getElementById('oceanColor').addEventListener("input", updatePlanetEvent);
-  document.getElementById('seaLevelOffset').addEventListener("input", updatePlanetEvent);
-  document.getElementById('heightOffset').addEventListener("input", updatePlanetEvent);
-  document.getElementById('detail').addEventListener("input", updatePlanetEvent);
+  document.getElementById("seed").addEventListener("input", updatePlanetEvent);
+  document
+    .getElementById("surfaceColor")
+    .addEventListener("input", updatePlanetEvent);
+  document
+    .getElementById("oceanColor")
+    .addEventListener("input", updatePlanetEvent);
+  document
+    .getElementById("seaLevelOffset")
+    .addEventListener("input", updatePlanetEvent);
+  document
+    .getElementById("heightOffset")
+    .addEventListener("input", updatePlanetEvent);
+  document
+    .getElementById("detail")
+    .addEventListener("input", updatePlanetEvent);
+
+  // Copy Link
+  document.getElementById("link").addEventListener("click", generateURL);
 });
 
 // Function for when the initial planet info changes
@@ -100,4 +147,36 @@ function updatePlanet(
 }
 
 // Return copy of URL for sharing online
-function generateURL() {}
+async function generateURL() {
+  const tld = "https://miniworlds.ryanmichaelcurry.com/";
+  const detail = document.getElementById("detail").value;
+  const seed = document.getElementById("seed").value;
+  const surfaceColor = document.getElementById("surfaceColor").value;
+  const oceanColor = document.getElementById("oceanColor").value;
+  const seaLevelOffset = document.getElementById("seaLevelOffset").value;
+  const heightOffset = document.getElementById("heightOffset").value;
+
+  const url =
+    tld +
+    "?detail=" +
+    detail +
+    "&seed=" +
+    encodeURIComponent(seed) +
+    "&surfaceColor=" +
+    encodeURIComponent(surfaceColor) +
+    "&oceanColor=" +
+    encodeURIComponent(oceanColor) +
+    "&seaLevelOffset=" +
+    seaLevelOffset +
+    "&heightOffset=" +
+    heightOffset;
+
+  console.log(url);
+
+  try {
+    await navigator.clipboard.writeText(url);
+    console.log("Content copied to clipboard");
+  } catch (err) {
+    console.error("Failed to copy: ", err);
+  }
+}

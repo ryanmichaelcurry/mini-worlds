@@ -37,8 +37,6 @@ export default class Planet extends Entity {
     if (seaLevelOffset != 0) {
       this.generateOcean();
     }
-
-    console.log(this);
   }
 
   generatePlanet() {
@@ -225,18 +223,17 @@ export default class Planet extends Entity {
     // finished planet mesh
     this.components.surface = new THREE.Mesh(
       geometry,
-      new THREE.MeshToonMaterial({
+      new THREE.MeshPhongMaterial({
         vertexColors: true,
       })
     );
   }
 
   generateOcean() {
-    console.log("oceanColor", this.oceanColor);
 
     const waterGeometry = new THREE.IcosahedronGeometry(1, 6);
-    const waterMaterial = new THREE.MeshToonMaterial({
-      shininess: 100,
+    const waterMaterial = new THREE.MeshPhongMaterial({
+      shininess: 50,
       transparent: 0.3,
     });
     waterMaterial.color.setRGB(
